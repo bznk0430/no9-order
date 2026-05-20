@@ -207,7 +207,7 @@
   .cart-empty { text-align: center; color: var(--mid-gray); padding: 20px 0; font-size: 14px; }
   .cart-item {
     display: grid;
-    grid-template-columns: 1fr auto auto;
+    grid-template-columns: 1fr auto auto auto;
     gap: 10px;
     align-items: center;
     padding: 10px 0;
@@ -216,7 +216,8 @@
   }
   .cart-item:last-child { border-bottom: none; }
   .cart-item .ci-name { font-weight: 600; line-height: 1.4; }
-  .cart-item .ci-qty { color: var(--mid-gray); font-size: 12px; }
+  .ci-qty-ctrl { display: flex; align-items: center; gap: 6px; }
+  .ci-qty-num { min-width: 20px; text-align: center; font-weight: 600; font-size: 14px; }
   .cart-item .ci-price { font-weight: 700; color: var(--coral); white-space: nowrap; }
   .cart-item .ci-remove { cursor: pointer; color: #ccc; font-size: 16px; }
   .cart-item .ci-remove:hover { color: var(--coral); }
@@ -390,8 +391,8 @@
         <input type="tel" id="buyerPhone" placeholder="09xx-xxxxxx">
       </div>
       <div class="form-group full">
-        <label>LINE ID / Email</label>
-        <input type="text" id="buyerLine" placeholder="方便聯絡的 LINE ID 或 Email">
+        <label>LINE ID *</label>
+        <input type="text" id="buyerLine" placeholder="請輸入您的 LINE ID（必填）">
       </div>
       <div class="form-group full">
         <label>收貨地址 *</label>
@@ -404,6 +405,11 @@
     </div>
   </div>
 
+  <div style="text-align:center; margin-bottom:24px; font-size:14px; line-height:2; color:#666; background:#fffcf7; border:1.5px solid #e8e0d8; border-radius:10px; padding:18px 24px;">
+    感謝您參加 No.9 夏季團購！<br>
+    我們將盡快與您確認訂單，統一出貨日為 <strong style="color:#c45f4a;">2026/7/9</strong>。<br>
+    如有問題請透過 LINE（<strong>@096ycodq</strong>）聯絡店主，謝謝 🌸
+  </div>
   <button class="submit-btn" onclick="submitOrder()">✨ 確認送出訂單 ✨</button>
 </div>
 
@@ -413,8 +419,10 @@
     <div class="emoji">🎉</div>
     <h2>訂單已送出！</h2>
     <p>感謝您參加 No.9 夏季團購！<br>
-    我們將於活動結束後與您確認訂單細節，<br>
-    統一出貨日為 <strong>2026/7/9</strong>，請耐心等候 🌸</p>
+    我們將盡快與您確認訂單，<br>
+    統一出貨日為 <strong>2026/7/9</strong>。<br><br>
+    如有問題請透過 LINE<br>
+    <strong>@096ycodq</strong> 聯絡店主，謝謝 🌸</p>
     <button class="modal-close" onclick="closeModal()">好的，了解！</button>
   </div>
 </div>
@@ -591,6 +599,15 @@ function addToCart(key) {
   renderCart();
 }
 
+function cartChangeQty(key, delta) {
+  if(!cart[key]) return;
+  cart[key].qty = Math.max(1, cart[key].qty + delta);
+  qtyMap[key] = cart[key].qty;
+  const qtyEl = document.getElementById('qty_'+key);
+  if(qtyEl) qtyEl.textContent = cart[key].qty;
+  renderCart();
+}
+
 function renderCart() {
   const items = Object.entries(cart).filter(([,v])=>v.qty>0);
   const countEl = document.getElementById('cartCount');
@@ -605,7 +622,12 @@ function renderCart() {
   cartDiv.innerHTML = items.map(([key,v])=>{
     const sub = v.sale*v.qty; total+=sub;
     return `<div class="cart-item">
-      <div><div class="ci-name">${v.name}</div><div class="ci-qty">× ${v.qty}</div></div>
+      <div class="ci-name">${v.name}</div>
+      <div class="ci-qty-ctrl">
+        <button class="qty-btn" onclick="cartChangeQty('${key}',-1)">−</button>
+        <span class="ci-qty-num">${v.qty}</span>
+        <button class="qty-btn" onclick="cartChangeQty('${key}',1)">+</button>
+      </div>
       <div class="ci-price">NT$ ${sub.toLocaleString()}</div>
       <div class="ci-remove" onclick="removeCart('${key}')">✕</div>
     </div>`;
@@ -640,7 +662,7 @@ async function submitOrder() {
   const addr = document.getElementById('buyerAddr').value.trim();
   const line = document.getElementById('buyerLine').value.trim();
   const note = document.getElementById('buyerNote').value.trim();
-  if(!name||!phone||!addr){ alert('請填寫姓名、電話及收貨地址！'); return; }
+  if(!name||!phone||!addr||!line){ alert('請填寫姓名、電話、LINE ID 及收貨地址！'); return; }
 
   const btn = document.querySelector('.submit-btn');
   btn.textContent = '送出中…'; btn.disabled = true;
@@ -649,27 +671,11 @@ async function submitOrder() {
   const itemLines = items.map(([,v])=>{ const s=v.sale*v.qty; total+=s; return v.name+' × '+v.qty+' = NT$'+s.toLocaleString(); });
   const orderText = itemLines.join('\n') + '\n─────────────\n總計：NT$'+total.toLocaleString();
 
-  // ── 1. Formspree 寄信 ──
-  const formData = new FormData();
-  formData.append('姓名', name);
-  formData.append('電話', phone);
-  formData.append('LINE/Email', line||'（未填）');
-  formData.append('收貨地址', addr);
-  formData.append('訂單明細', orderText);
-  formData.append('備註', note||'（無）');
-  formData.append('_subject', '🛍️ No.9 夏季團購新訂單 - '+name);
-
-  let mailOk = false;
-  try {
-    const res = await fetch('https://formspree.io/f/meedeeod', { method:'POST', body:formData, headers:{Accept:'application/json'} });
-    mailOk = res.ok;
-  } catch(e){ mailOk = false; }
-
-  // ── 2. Telegram 推播 ──
+  // ── Telegram 推播 ──
   const tgMsg = '🛍️ *No.9 夏季團購 - 新訂單！*\n\n'
     + '👤 姓名：'+name+'\n'
     + '📞 電話：'+phone+'\n'
-    + '💬 LINE/Email：'+(line||'未填')+'\n'
+    + '💬 LINE ID：'+line+'\n'
     + '📦 地址：'+addr+'\n\n'
     + '📋 訂單明細：\n'+itemLines.join('\n')+'\n\n'
     + '💰 *總計：NT$'+total.toLocaleString()+'*\n\n'
@@ -687,7 +693,7 @@ async function submitOrder() {
 
   btn.textContent = '✨ 確認送出訂單 ✨'; btn.disabled = false;
 
-  if(mailOk || tgOk) {
+  if(tgOk) {
     document.getElementById('successModal').classList.add('show');
   } else {
     alert('送出失敗，請檢查網路連線後再試一次！');

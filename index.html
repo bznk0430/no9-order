@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>No.9 夏季團購活動 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #fdf8f2;
+    --warm-white: #fffcf7;
+    --blush: #f2c4b8;
+    --coral: #e8856a;
+    --deep-rose: #c45f4a;
+    --gold: #c9a96e;
+    --deep-gold: #9a7a45;
+    --sage: #8aaa8c;
+    --charcoal: #2d2d2d;
+    --mid-gray: #666;
+    --light-gray: #e8e0d8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream);
+    font-family: 'Noto Serif TC', serif;
+    color: var(--charcoal);
+    min-height: 100vh;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    background: linear-gradient(160deg, #fce8e0 0%, #fdf4ec 45%, #e8f0e8 100%);
+    padding: 60px 20px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 40% at 80% 20%, rgba(201,169,110,.18) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 35% at 15% 80%, rgba(232,133,106,.13) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .badge {
+    display: inline-block;
+    border: 1.5px solid var(--gold);
+    color: var(--deep-gold);
+    font-size: 12px;
+    letter-spacing: 4px;
+    padding: 5px 18px;
+    margin-bottom: 22px;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 6vw, 60px);
+    font-weight: 700;
+    color: var(--charcoal);
+    line-height: 1.15;
+    margin-bottom: 10px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--coral);
+  }
+  .hero-sub {
+    font-size: 15px;
+    color: var(--mid-gray);
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+  }
+  .info-pills {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  .pill {
+    background: rgba(255,255,255,.75);
+    border: 1px solid var(--light-gray);
+    border-radius: 40px;
+    padding: 7px 20px;
+    font-size: 13px;
+    color: var(--charcoal);
+    display: flex; align-items: center; gap: 7px;
+  }
+  .pill span.icon { font-size: 16px; }
+  .pill strong { color: var(--coral); }
+
+  /* ── Main layout ── */
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+  }
+
+  /* ── Section title ── */
+  .section-title {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 22px;
+  }
+  .section-title h2 {
+    font-size: 18px; font-weight: 700; letter-spacing: 1px;
+  }
+  .section-title::before,
+  .section-title::after {
+    content: ''; flex: 1; height: 1px; background: var(--light-gray);
+  }
+
+  /* ── Search ── */
+  .search-wrap {
+    position: relative; margin-bottom: 28px;
+  }
+  .search-wrap input {
+    width: 100%;
+    padding: 13px 18px 13px 46px;
+    border: 1.5px solid var(--light-gray);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    background: var(--warm-white);
+    transition: border .2s;
+    outline: none;
+  }
+  .search-wrap input:focus { border-color: var(--coral); }
+  .search-wrap .si { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--mid-gray); font-size: 18px; }
+
+  /* ── Category tabs ── */
+  .tabs {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-bottom: 24px;
+  }
+  .tab {
+    padding: 7px 16px;
+    border-radius: 40px;
+    font-size: 13px;
+    border: 1.5px solid var(--light-gray);
+    background: transparent;
+    cursor: pointer;
+    font-family: inherit;
+    color: var(--mid-gray);
+    transition: all .18s;
+  }
+  .tab.active, .tab:hover {
+    border-color: var(--coral);
+    color: var(--coral);
+    background: rgba(232,133,106,.07);
+  }
+
+  /* ── Product cards ── */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+  .product-card {
+    background: var(--warm-white);
+    border: 1.5px solid var(--light-gray);
+    border-radius: 10px;
+    padding: 16px;
+    transition: box-shadow .2s, border-color .2s;
+  }
+  .product-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.07); border-color: var(--blush); }
+  .product-card .code { font-size: 11px; color: var(--mid-gray); letter-spacing: 1px; margin-bottom: 4px; }
+  .product-card .name { font-size: 14px; font-weight: 600; line-height: 1.45; margin-bottom: 10px; min-height: 40px; }
+  .product-card .price-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 12px; }
+  .product-card .price-sale { font-size: 20px; font-weight: 700; color: var(--coral); }
+  .product-card .price-orig { font-size: 12px; color: #aaa; text-decoration: line-through; }
+  .qty-row { display: flex; align-items: center; gap: 8px; }
+  .qty-btn {
+    width: 30px; height: 30px; border-radius: 50%;
+    border: 1.5px solid var(--light-gray);
+    background: var(--cream);
+    font-size: 16px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all .15s;
+    color: var(--charcoal);
+  }
+  .qty-btn:hover { border-color: var(--coral); color: var(--coral); }
+  .qty-display { width: 36px; text-align: center; font-size: 15px; font-weight: 600; }
+  .add-btn {
+    margin-left: auto;
+    background: var(--coral);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 7px 14px;
+    font-size: 13px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background .15s;
+  }
+  .add-btn:hover { background: var(--deep-rose); }
+  .add-btn.added { background: var(--sage); }
+
+  /* ── Cart ── */
+  .cart-section {
+    background: var(--warm-white);
+    border: 1.5px solid var(--light-gray);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 30px;
+  }
+  .cart-empty { text-align: center; color: var(--mid-gray); padding: 20px 0; font-size: 14px; }
+  .cart-item {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 10px;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--light-gray);
+    font-size: 13px;
+  }
+  .cart-item:last-child { border-bottom: none; }
+  .cart-item .ci-name { font-weight: 600; line-height: 1.4; }
+  .cart-item .ci-qty { color: var(--mid-gray); font-size: 12px; }
+  .cart-item .ci-price { font-weight: 700; color: var(--coral); white-space: nowrap; }
+  .cart-item .ci-remove { cursor: pointer; color: #ccc; font-size: 16px; }
+  .cart-item .ci-remove:hover { color: var(--coral); }
+  .cart-total {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 16px;
+    font-size: 17px; font-weight: 700;
+  }
+  .cart-total .total-price { color: var(--coral); font-size: 22px; }
+
+  /* ── Buyer form ── */
+  .form-section {
+    background: var(--warm-white);
+    border: 1.5px solid var(--light-gray);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 30px;
+  }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media(max-width:520px){ .form-grid { grid-template-columns: 1fr; } }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group.full { grid-column: 1/-1; }
+  .form-group label { font-size: 13px; color: var(--mid-gray); font-weight: 600; }
+  .form-group input, .form-group select, .form-group textarea {
+    padding: 11px 14px;
+    border: 1.5px solid var(--light-gray);
+    border-radius: 7px;
+    font-size: 14px;
+    font-family: inherit;
+    background: var(--cream);
+    transition: border .2s;
+    outline: none;
+    color: var(--charcoal);
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--coral); }
+  .form-group textarea { resize: vertical; min-height: 80px; }
+
+  /* ── Notice box ── */
+  .notice-box {
+    background: linear-gradient(135deg, #fff9f5, #f8f5f0);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin-bottom: 30px;
+    font-size: 13px;
+    line-height: 1.9;
+    color: var(--charcoal);
+  }
+  .notice-box h3 { font-size: 14px; color: var(--deep-gold); margin-bottom: 8px; }
+
+  /* ── Submit ── */
+  .submit-btn {
+    width: 100%;
+    padding: 18px;
+    background: linear-gradient(135deg, var(--coral), var(--deep-rose));
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 17px;
+    font-family: inherit;
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: opacity .2s, transform .15s;
+    box-shadow: 0 6px 20px rgba(232,133,106,.35);
+  }
+  .submit-btn:hover { opacity: .9; transform: translateY(-1px); }
+  .submit-btn:active { transform: translateY(0); }
+
+  /* ── Success modal ── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,.45); z-index: 999;
+    align-items: center; justify-content: center;
+  }
+  .modal-overlay.show { display: flex; }
+  .modal {
+    background: #fff; border-radius: 16px;
+    padding: 40px 36px; max-width: 420px; width: 90%;
+    text-align: center; animation: pop .3s ease;
+  }
+  @keyframes pop { from { transform: scale(.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  .modal .emoji { font-size: 48px; margin-bottom: 14px; }
+  .modal h2 { font-size: 22px; margin-bottom: 10px; }
+  .modal p { font-size: 14px; color: var(--mid-gray); line-height: 1.8; margin-bottom: 22px; }
+  .modal-close {
+    background: var(--coral); color: #fff; border: none;
+    padding: 12px 36px; border-radius: 8px; font-size: 15px;
+    font-family: inherit; cursor: pointer;
+  }
+
+  /* ── Misc ── */
+  .hidden { display: none !important; }
+  .count-badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--coral); color: #fff;
+    width: 20px; height: 20px; border-radius: 50%; font-size: 11px;
+    margin-left: 6px; font-weight: 700;
+  }
+  .no-results { color: var(--mid-gray); text-align: center; padding: 30px 0; font-size: 14px; }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="badge">✦ Summer Group Buy 2026 ✦</div>
+  <h1>No.9 系列<br><em>夏季團購活動</em></h1>
+  <p class="hero-sub">全系列商品 · 活動優惠價</p>
+  <div class="info-pills">
+    <div class="pill"><span class="icon">📅</span>活動期間 <strong>2026/5/18 – 6/2</strong></div>
+    <div class="pill"><span class="icon">🚚</span>統一出貨 <strong>2026/7/9</strong></div>
+    <div class="pill"><span class="icon">🏷️</span>活動優惠價 限時特惠</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- Notice -->
+  <div class="notice-box">
+    <h3>📌 注意事項</h3>
+    ‧ 本次團購統一於 <strong>2026/7/9</strong> 出貨，不提前出貨。<br>
+    ‧ 活動期間 <strong>2026/5/18 – 2026/6/2</strong>，逾期恕不受理。<br>
+    ‧ 提交訂單後請保留確認畫面，如有疑問請透過 LINE 聯絡。<br>
+    ‧ 部分商品為特殊色號／套組，下單前請確認規格。
+  </div>
+
+  <!-- Product Selection -->
+  <div class="section-title"><h2>選購商品</h2></div>
+
+  <div class="search-wrap">
+    <span class="si">🔍</span>
+    <input type="text" id="searchInput" placeholder="搜尋商品名稱或編號…" oninput="filterProducts()">
+  </div>
+
+  <div class="tabs" id="tabs">
+    <button class="tab active" onclick="filterCat('all',this)">全部</button>
+    <button class="tab" onclick="filterCat('底膠/上層膠',this)">底膠/上層膠</button>
+    <button class="tab" onclick="filterCat('建構膠',this)">建構膠</button>
+    <button class="tab" onclick="filterCat('彩膠/貓眼',this)">彩膠/貓眼</button>
+    <button class="tab" onclick="filterCat('暈染/拉絲',this)">暈染/拉絲</button>
+    <button class="tab" onclick="filterCat('套組',this)">套組</button>
+    <button class="tab" onclick="filterCat('機器/工具',this)">機器/工具</button>
+    <button class="tab" onclick="filterCat('耗材',this)">耗材/磨棒</button>
+  </div>
+
+  <div class="products-grid" id="productsGrid"></div>
+  <div class="no-results hidden" id="noResults">找不到符合的商品 🌸</div>
+
+  <!-- Cart -->
+  <div class="section-title"><h2>購物清單 <span class="count-badge" id="cartCount">0</span></h2></div>
+  <div class="cart-section">
+    <div id="cartEmpty" class="cart-empty">尚未加入任何商品</div>
+    <div id="cartItems"></div>
+    <div id="cartTotalRow" class="cart-total hidden">
+      <span>總計</span>
+      <span class="total-price" id="cartTotal">NT$ 0</span>
+    </div>
+  </div>
+
+  <!-- Buyer Info -->
+  <div class="section-title"><h2>訂購資訊</h2></div>
+  <div class="form-section">
+    <div class="form-grid">
+      <div class="form-group">
+        <label>姓名 *</label>
+        <input type="text" id="buyerName" placeholder="請輸入真實姓名">
+      </div>
+      <div class="form-group">
+        <label>聯絡電話 *</label>
+        <input type="tel" id="buyerPhone" placeholder="09xx-xxxxxx">
+      </div>
+      <div class="form-group full">
+        <label>LINE ID / Email</label>
+        <input type="text" id="buyerLine" placeholder="方便聯絡的 LINE ID 或 Email">
+      </div>
+      <div class="form-group full">
+        <label>收貨地址 *</label>
+        <input type="text" id="buyerAddr" placeholder="縣市 + 詳細地址">
+      </div>
+      <div class="form-group full">
+        <label>備註（色號、特殊需求等）</label>
+        <textarea id="buyerNote" placeholder="例：暈染膠請選01~06號、甲油彩膠需要001~010…"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <button class="submit-btn" onclick="submitOrder()">✨ 確認送出訂單 ✨</button>
+</div>
+
+<!-- Success Modal -->
+<div class="modal-overlay" id="successModal">
+  <div class="modal">
+    <div class="emoji">🎉</div>
+    <h2>訂單已送出！</h2>
+    <p>感謝您參加 No.9 夏季團購！<br>
+    我們將於活動結束後與您確認訂單細節，<br>
+    統一出貨日為 <strong>2026/7/9</strong>，請耐心等候 🌸</p>
+    <button class="modal-close" onclick="closeModal()">好的，了解！</button>
+  </div>
+</div>
+
+<script>
+const PRODUCTS = [
+  // 底膠/上層膠
+  {id:'NO9002',name:'No.9甲油底膠',sale:175,orig:300,cat:'底膠/上層膠'},
+  {id:'NO9004',name:'No.9甲油免除上層膠',sale:175,orig:300,cat:'底膠/上層膠'},
+  {id:'NO9009',name:'No.9甲油暈染膠-透明',sale:175,orig:300,cat:'底膠/上層膠'},
+  {id:'NO9010',name:'No.9甲片黏著底膠',sale:175,orig:300,cat:'底膠/上層膠'},
+  {id:'',name:'NO.9免清不沾粉霧面 10ml',sale:175,orig:300,cat:'底膠/上層膠'},
+  {id:'',name:'NO.9免清鏡面粉上層 8ml',sale:155,orig:280,cat:'底膠/上層膠'},
+  {id:'',name:'NO.9甲油激亮鏡面上層 10ml (T2)',sale:175,orig:300,cat:'底膠/上層膠'},
+  {id:'',name:'NO.9甲油免清上層 10ml (T3)',sale:175,orig:300,cat:'底膠/上層膠'},
+  {id:'',name:'NO.9色鉛筆霧面上層 10ml(M4)',sale:175,orig:300,cat:'底膠/上層膠'},
+  // 建構膠
+  {id:'NO9003',name:'No.9甲油建構膠',sale:175,orig:300,cat:'建構膠'},
+  {id:'NO9001',name:'No.9軟糖膠-果凍黑15g',sale:240,orig:360,cat:'建構膠'},
+  {id:'NO9005',name:'No.9軟糖膠-透明15g',sale:240,orig:360,cat:'建構膠'},
+  {id:'',name:'No.9新色軟糖膠-15g (白/珍珠白/5~11號)',sale:240,orig:360,cat:'建構膠'},
+  {id:'',name:'NO.9軟糖膠花窗印章',sale:200,orig:330,cat:'建構膠'},
+  {id:'NO9006',name:'No.9免清建構上層50ml-稠',sale:700,orig:1000,cat:'建構膠'},
+  {id:'NO9007',name:'No.9新款透明延長建構膠-稀50ml',sale:500,orig:1000,cat:'建構膠'},
+  {id:'NO9008',name:'No.9新款透明延長建構膠-稠50ml',sale:500,orig:1000,cat:'建構膠'},
+  {id:'NO9014',name:'No.9免清建構上層50ml-稀',sale:700,orig:1000,cat:'建構膠'},
+  {id:'',name:'No.9免清建構上層50ml-適中',sale:700,orig:1000,cat:'建構膠'},
+  {id:'',name:'No.9有色延長建構膠 25ml 01~05號',sale:245,orig:385,cat:'建構膠'},
+  // 彩膠/貓眼
+  {id:'NO9G001~66',name:'No.9甲油彩膠001~75 (單瓶)',sale:150,orig:250,cat:'彩膠/貓眼'},
+  {id:'NO9F01~05',name:'No.9幻彩2D磁石膠01~05 (單瓶)',sale:240,orig:310,cat:'彩膠/貓眼'},
+  {id:'NO9F06~10',name:'No.9白瓷貓眼膠06~10 (單瓶)',sale:240,orig:350,cat:'彩膠/貓眼'},
+  {id:'NO9F11~15',name:'No.9精靈系貓眼膠11~15 (單瓶)',sale:240,orig:350,cat:'彩膠/貓眼'},
+  {id:'NO9F16~20',name:'No.9乾燥玫瑰碎鑽貓眼16~20 (單瓶)',sale:240,orig:350,cat:'彩膠/貓眼'},
+  {id:'',name:'No.9玻璃珠貓眼21~30 (單瓶)',sale:240,orig:350,cat:'彩膠/貓眼'},
+  {id:'NO9ML01~04',name:'No.9白月光貓眼膠01~04 (單瓶)',sale:240,orig:350,cat:'彩膠/貓眼'},
+  {id:'',name:'NO.9碎鑽膠1~12 (單瓶)',sale:220,orig:270,cat:'彩膠/貓眼'},
+  {id:'',name:'NO.9璀璨金沙膠01~12 (單瓶)',sale:170,orig:300,cat:'彩膠/貓眼'},
+  {id:'',name:'NO.9金箔膠01~12 (單瓶)',sale:170,orig:300,cat:'彩膠/貓眼'},
+  {id:'',name:'No.9甲油鉑金膠P01~P07 黑瓶',sale:150,orig:250,cat:'彩膠/貓眼'},
+  {id:'',name:'NO.9人魚膠01~08 (單瓶)',sale:170,orig:300,cat:'彩膠/貓眼'},
+  {id:'',name:'NO.9礦彩肌理膠01~12 (單瓶)',sale:175,orig:305,cat:'彩膠/貓眼'},
+  {id:'',name:'NO.9極光貝殼膏01~10 (單瓶)',sale:185,orig:315,cat:'彩膠/貓眼'},
+  {id:'',name:'NO.9調色盤彩繪膠01~07 (單瓶)',sale:165,orig:295,cat:'彩膠/貓眼'},
+  {id:'',name:'NO.9 罐裝彩膠1-120色',sale:165,orig:295,cat:'彩膠/貓眼'},
+  {id:'',name:'NO.9 3D造型雕花膠 1-16號',sale:165,orig:295,cat:'彩膠/貓眼'},
+  // 暈染/拉絲
+  {id:'NO9INK01~12',name:'NO.9暈染液01~12 (單瓶)',sale:150,orig:280,cat:'暈染/拉絲'},
+  {id:'',name:'NO.9暈染液13~24 (單瓶)',sale:150,orig:280,cat:'暈染/拉絲'},
+  {id:'NO9029',name:'No.9免清拉絲膠 5g (黑)',sale:165,orig:280,cat:'暈染/拉絲'},
+  {id:'NO9030',name:'No.9免清拉絲膠 5g (白)',sale:165,orig:280,cat:'暈染/拉絲'},
+  {id:'',name:'No.9免清拉絲膠 5g (金)',sale:165,orig:280,cat:'暈染/拉絲'},
+  {id:'',name:'No.9免清拉絲膠 5g (銀)',sale:165,orig:280,cat:'暈染/拉絲'},
+  // 套組
+  {id:'NO9INKSET',name:'NO.9暈染液12色套組 1-12號',sale:1440,orig:3360,cat:'套組'},
+  {id:'',name:'NO.9暈染液12色套組 13-24號',sale:1440,orig:3360,cat:'套組'},
+  {id:'',name:'NO.9碎鑽膠12色套組',sale:2640,orig:3880,cat:'套組'},
+  {id:'',name:'NO.9璀璨金沙膠12色套組',sale:2040,orig:3160,cat:'套組'},
+  {id:'',name:'NO.9金箔膠12色套組',sale:2040,orig:3160,cat:'套組'},
+  {id:'',name:'NO.9人魚膠8色套組',sale:1380,orig:2100,cat:'套組'},
+  {id:'',name:'NO.9礦彩肌理膠套組',sale:2100,orig:3660,cat:'套組'},
+  {id:'',name:'NO.9極光貝殼膏套組',sale:1850,orig:3150,cat:'套組'},
+  {id:'',name:'NO.9調色盤彩繪膠套組',sale:1155,orig:2065,cat:'套組'},
+  {id:'NO9SPRAY00',name:'NO.9噴繪膠套組',sale:2950,orig:3360,cat:'套組'},
+  {id:'',name:'NO.9 36色甲油膠套組(春暖花開)',sale:3980,orig:null,cat:'套組'},
+  {id:'',name:'NO.9 16色貓眼膠套組',sale:3180,orig:null,cat:'套組'},
+  {id:'',name:'NO.9 12色冬季貓眼套組',sale:2385,orig:null,cat:'套組'},
+  {id:'',name:'NO.9 美肌裸色10色套組(含色卡)',sale:1500,orig:2500,cat:'套組'},
+  {id:'',name:'No.9 24色萬用鏡面粉',sale:1280,orig:2400,cat:'套組'},
+  {id:'',name:'水晶石貓眼限量套組（贈色卡／環型磁鐵／9色彩虹鏡面粉）',sale:3180,orig:null,cat:'套組'},
+  {id:'',name:'Candy半透色36色套組（贈乾燥花／色卡）',sale:3980,orig:null,cat:'套組'},
+  {id:'NO9PEN',name:'NO.9凝膠筆套組9支',sale:350,orig:520,cat:'套組'},
+  // 機器/工具
+  {id:'NO9M01',name:'No.9充電磨甲機',sale:3600,orig:7200,cat:'機器/工具'},
+  {id:'NO9M02',name:'No.9充電式混波燈',sale:990,orig:1200,cat:'機器/工具'},
+  {id:'NO9M03',name:'No.9凝膠手持燈3W',sale:210,orig:320,cat:'機器/工具'},
+  {id:'NO9M04',name:'No.9桌上型感應式凝膠燈24W',sale:350,orig:580,cat:'機器/工具'},
+  {id:'NO9SPRAY',name:'NO.9噴槍',sale:1800,orig:2600,cat:'機器/工具'},
+  {id:'',name:'NO.9凝膠筆(圓/平/圓建構)',sale:225,orig:320,cat:'機器/工具'},
+  {id:'',name:'NO.9 6款筆',sale:255,orig:350,cat:'機器/工具'},
+  {id:'',name:'NO.9水彩筆',sale:310,orig:450,cat:'機器/工具'},
+  {id:'NO9011',name:'No.9固態甲片黏著膠15ml',sale:165,orig:260,cat:'機器/工具'},
+  {id:'NO9012',name:'No.9固態甲片黏著膠30ml',sale:265,orig:350,cat:'機器/工具'},
+  {id:'NO9017',name:'No.9免清固態罐裝黏鑽膠20g',sale:235,orig:330,cat:'機器/工具'},
+  {id:'',name:'No.9針型黏鑽膠 8ml',sale:165,orig:280,cat:'機器/工具'},
+  {id:'NO9019',name:'No.9筆刷護理凝露23ml',sale:165,orig:290,cat:'機器/工具'},
+  {id:'',name:'No.9洗筆凝露60ml',sale:205,orig:330,cat:'機器/工具'},
+  {id:'',name:'NO.9平衡劑',sale:175,orig:250,cat:'機器/工具'},
+  {id:'',name:'NO.9稀釋液',sale:185,orig:315,cat:'機器/工具'},
+  {id:'',name:'NO.9波浪膠8ml',sale:175,orig:280,cat:'機器/工具'},
+  {id:'',name:'NO.9石紋龜裂液(黑/白)',sale:150,orig:250,cat:'機器/工具'},
+  {id:'',name:'NO.9香氛指緣精油 8ml',sale:170,orig:320,cat:'機器/工具'},
+  {id:'',name:'NO.9指緣軟化劑 8ml',sale:135,orig:255,cat:'機器/工具'},
+  {id:'',name:'No.9金屬膠(銀)',sale:205,orig:360,cat:'機器/工具'},
+  {id:'',name:'No.9俄式雙頭鋼推',sale:215,orig:390,cat:'機器/工具'},
+  {id:'',name:'No.9甘皮剪',sale:420,orig:580,cat:'機器/工具'},
+  {id:'',name:'No.9卸甲磨頭 (C~3XC)',sale:320,orig:500,cat:'機器/工具'},
+  {id:'',name:'No.9保養磨頭系列(1-10號)',sale:205,orig:325,cat:'機器/工具'},
+  {id:'',name:'No.9水晶筆-8號',sale:740,orig:1100,cat:'機器/工具'},
+  {id:'',name:'NO.9 鋼板轉印膠',sale:820,orig:1240,cat:'機器/工具'},
+  // 耗材
+  {id:'',name:'NO.9水晶磨棒100/100 (單支)',sale:45,orig:85,cat:'耗材'},
+  {id:'',name:'NO.9水晶磨棒100/100 (25支裝)',sale:1125,orig:2125,cat:'耗材'},
+  {id:'',name:'NO.9水晶磨棒150/150 (單支)',sale:45,orig:85,cat:'耗材'},
+  {id:'',name:'NO.9水晶磨棒150/150 (25支裝)',sale:1125,orig:2125,cat:'耗材'},
+  {id:'',name:'NO.9水晶磨棒180/180 (單支)',sale:45,orig:85,cat:'耗材'},
+  {id:'',name:'NO.9水晶磨棒180/180 (25支裝)',sale:1125,orig:2125,cat:'耗材'},
+  {id:'',name:'NO.9海綿拋棒100/180 (單支)',sale:50,orig:100,cat:'耗材'},
+  {id:'',name:'NO.9海綿拋棒100/180 (10支裝)',sale:500,orig:1000,cat:'耗材'},
+  {id:'',name:'NO.9真甲磨棒(單支)',sale:30,orig:45,cat:'耗材'},
+  {id:'',name:'NO.9真甲磨棒(50支)',sale:850,orig:1600,cat:'耗材'},
+  {id:'',name:'No.9穿戴甲盒裝甲片01~04',sale:235,orig:390,cat:'耗材'},
+  {id:'WNP05~06',name:'No.9穿戴甲盒裝甲片05~06',sale:335,orig:540,cat:'耗材'},
+  {id:'WNP07~08',name:'No.9穿戴甲盒裝甲片07~08',sale:235,orig:390,cat:'耗材'},
+  {id:'',name:'No.9俄式3秒長梯甲片',sale:265,orig:385,cat:'耗材'},
+  {id:'',name:'No.9俄式3秒長尖甲片',sale:265,orig:385,cat:'耗材'},
+  {id:'',name:'No.9俄式延長甲模',sale:365,orig:485,cat:'耗材'},
+];
+
+// qty map
+const qtyMap = {};
+const cart = {};
+let currentCat = 'all';
+let currentSearch = '';
+
+function renderProducts() {
+  const grid = document.getElementById('productsGrid');
+  const noRes = document.getElementById('noResults');
+  let filtered = PRODUCTS.filter(p => {
+    const matchCat = currentCat === 'all' || p.cat === currentCat;
+    const q = currentSearch.toLowerCase();
+    const matchSearch = !q || p.name.toLowerCase().includes(q) || p.id.toLowerCase().includes(q);
+    return matchCat && matchSearch;
+  });
+  if (!filtered.length) { grid.innerHTML=''; noRes.classList.remove('hidden'); return; }
+  noRes.classList.add('hidden');
+  grid.innerHTML = filtered.map((p, i) => {
+    const key = p.id || p.name;
+    const qty = qtyMap[key] || 0;
+    const inCart = cart[key] && cart[key].qty > 0;
+    return `<div class="product-card" data-key="${key}">
+      <div class="code">${p.id || '—'}</div>
+      <div class="name">${p.name}</div>
+      <div class="price-row">
+        <span class="price-sale">NT$ ${p.sale.toLocaleString()}</span>
+        ${p.orig ? `<span class="price-orig">NT$ ${p.orig.toLocaleString()}</span>` : ''}
+      </div>
+      <div class="qty-row">
+        <button class="qty-btn" onclick="changeQty('${key}',-1)">−</button>
+        <span class="qty-display" id="qty_${key}">${qty}</span>
+        <button class="qty-btn" onclick="changeQty('${key}',1)">+</button>
+        <button class="add-btn ${inCart?'added':''}" id="addbtn_${key}" onclick="addToCart('${key}')">
+          ${inCart ? '已加入 ✓' : '加入清單'}
+        </button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function changeQty(key, delta) {
+  qtyMap[key] = Math.max(0, (qtyMap[key]||0)+delta);
+  const el = document.getElementById('qty_'+key);
+  if(el) el.textContent = qtyMap[key];
+}
+
+function addToCart(key) {
+  const p = PRODUCTS.find(x=>(x.id||x.name)===key);
+  if(!p) return;
+  const qty = qtyMap[key]||1;
+  if(qty===0){ alert('請先選擇數量！'); return; }
+  cart[key] = {name:p.name, sale:p.sale, qty};
+  const btn = document.getElementById('addbtn_'+key);
+  if(btn){ btn.textContent='已加入 ✓'; btn.classList.add('added'); }
+  renderCart();
+}
+
+function renderCart() {
+  const items = Object.entries(cart).filter(([,v])=>v.qty>0);
+  const countEl = document.getElementById('cartCount');
+  countEl.textContent = items.length;
+  const empty = document.getElementById('cartEmpty');
+  const cartDiv = document.getElementById('cartItems');
+  const totalRow = document.getElementById('cartTotalRow');
+  if(!items.length){ empty.style.display='block'; cartDiv.innerHTML=''; totalRow.classList.add('hidden'); return; }
+  empty.style.display='none';
+  totalRow.classList.remove('hidden');
+  let total=0;
+  cartDiv.innerHTML = items.map(([key,v])=>{
+    const sub = v.sale*v.qty; total+=sub;
+    return `<div class="cart-item">
+      <div><div class="ci-name">${v.name}</div><div class="ci-qty">× ${v.qty}</div></div>
+      <div class="ci-price">NT$ ${sub.toLocaleString()}</div>
+      <div class="ci-remove" onclick="removeCart('${key}')">✕</div>
+    </div>`;
+  }).join('');
+  document.getElementById('cartTotal').textContent = 'NT$ '+total.toLocaleString();
+}
+
+function removeCart(key) {
+  delete cart[key];
+  const btn = document.getElementById('addbtn_'+key);
+  if(btn){ btn.textContent='加入清單'; btn.classList.remove('added'); }
+  renderCart();
+}
+
+function filterCat(cat, el) {
+  currentCat = cat;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  renderProducts();
+}
+
+function filterProducts() {
+  currentSearch = document.getElementById('searchInput').value;
+  renderProducts();
+}
+
+async function submitOrder() {
+  const items = Object.entries(cart).filter(([,v])=>v.qty>0);
+  if(!items.length){ alert('請先加入商品至購物清單！'); return; }
+  const name = document.getElementById('buyerName').value.trim();
+  const phone = document.getElementById('buyerPhone').value.trim();
+  const addr = document.getElementById('buyerAddr').value.trim();
+  const line = document.getElementById('buyerLine').value.trim();
+  const note = document.getElementById('buyerNote').value.trim();
+  if(!name||!phone||!addr){ alert('請填寫姓名、電話及收貨地址！'); return; }
+
+  const btn = document.querySelector('.submit-btn');
+  btn.textContent = '送出中…'; btn.disabled = true;
+
+  let total = 0;
+  const itemLines = items.map(([,v])=>{ const s=v.sale*v.qty; total+=s; return v.name+' × '+v.qty+' = NT$'+s.toLocaleString(); });
+  const orderText = itemLines.join('\n') + '\n─────────────\n總計：NT$'+total.toLocaleString();
+
+  // ── 1. Formspree 寄信 ──
+  const formData = new FormData();
+  formData.append('姓名', name);
+  formData.append('電話', phone);
+  formData.append('LINE/Email', line||'（未填）');
+  formData.append('收貨地址', addr);
+  formData.append('訂單明細', orderText);
+  formData.append('備註', note||'（無）');
+  formData.append('_subject', '🛍️ No.9 夏季團購新訂單 - '+name);
+
+  let mailOk = false;
+  try {
+    const res = await fetch('https://formspree.io/f/meedeeod', { method:'POST', body:formData, headers:{Accept:'application/json'} });
+    mailOk = res.ok;
+  } catch(e){ mailOk = false; }
+
+  // ── 2. Telegram 推播 ──
+  const tgMsg = '🛍️ *No.9 夏季團購 - 新訂單！*\n\n'
+    + '👤 姓名：'+name+'\n'
+    + '📞 電話：'+phone+'\n'
+    + '💬 LINE/Email：'+(line||'未填')+'\n'
+    + '📦 地址：'+addr+'\n\n'
+    + '📋 訂單明細：\n'+itemLines.join('\n')+'\n\n'
+    + '💰 *總計：NT$'+total.toLocaleString()+'*\n\n'
+    + '📝 備註：'+(note||'無');
+
+  let tgOk = false;
+  try {
+    const tgRes = await fetch('https://api.telegram.org/bot8835047721:AAH0vaTGUDAmzBLLa8sHQrPP3xjPhqUy7ZI/sendMessage', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ chat_id:'1704366536', text:tgMsg, parse_mode:'Markdown' })
+    });
+    tgOk = tgRes.ok;
+  } catch(e){ tgOk = false; }
+
+  btn.textContent = '✨ 確認送出訂單 ✨'; btn.disabled = false;
+
+  if(mailOk || tgOk) {
+    document.getElementById('successModal').classList.add('show');
+  } else {
+    alert('送出失敗，請檢查網路連線後再試一次！');
+  }
+}
+
+function closeModal() {
+  document.getElementById('successModal').classList.remove('show');
+  Object.keys(cart).forEach(k=>delete cart[k]);
+  Object.keys(qtyMap).forEach(k=>delete qtyMap[k]);
+  ['buyerName','buyerPhone','buyerLine','buyerAddr','buyerNote'].forEach(id=>{
+    document.getElementById(id).value='';
+  });
+  renderCart();
+  renderProducts();
+}
+
+// Init
+renderProducts();
+</script>
+</body>
+</html>
